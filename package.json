@@ -4,7 +4,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "foreman run worker"
+    "start": "foreman run worker",
+    "test": "mocha test",
+    "pretest": "jshint app"
   },
   "engines": {
     "node": "0.10.x"
@@ -13,5 +15,15 @@
     "es6-promise": "1.0.0",
     "moment": "2.8.1",
     "needle": "0.7.8"
+  },
+  "devDependencies": {
+    "mocha": "^1.21.3",
+    "should": "^4.0.4",
+    "chai": "^1.9.1",
+    "chai-as-promised": "^4.1.1",
+    "dotenv": "^0.4.0"
+  },
+  "jshintConfig": {
+    "node": true
   }
 }
