@@ -1,0 +1,17 @@
+{
+  "name": "tictac-time-report",
+  "description": "",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "foreman run worker"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "dependencies": {
+    "es6-promise": "1.0.0",
+    "moment": "2.8.1",
+    "needle": "0.7.8"
+  }
+}
