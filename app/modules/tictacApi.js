@@ -20,7 +20,7 @@ var apiGet = function(method, params) {
     var url = TICTAC_API_BASE_URL + method + '.jsp?' + querystring.stringify(params);
 
     if (process.env.TICTAC_DEBUG) {
-        console.log('API ' + method + ': ' + querystring.stringify(params, ',', '='));
+        console.log('API ' + method + ': ' + querystring.stringify(params, ', ', '='));
     }
 
     return new Promise(function(resolve, reject) {
