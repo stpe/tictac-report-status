@@ -29,6 +29,9 @@ var apiGet = function(method, params) {
                 if (err) {
                     return reject(Error(err));
                 }
+                if (data.errorMessage) {
+                    return reject(Error(data.errorMessage));
+                }
 
                 if (process.env.TICTAC_DEBUG) {
                     console.log('API response:');
