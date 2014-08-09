@@ -10,6 +10,13 @@ var apiGet = function(method, params) {
     params.userid = process.env.TICTAC_API_USERID;
     params.password = process.env.TICTAC_API_PASSWORD;
 
+    // clear non-set parameters
+    Object.keys(params).forEach(function(key) {
+        if (typeof params[key] == 'undefined') {
+            delete params[key];
+        }
+    });
+
     var url = TICTAC_API_BASE_URL + method + '.jsp?' + querystring.stringify(params);
 
     if (process.env.TICTAC_DEBUG) {
