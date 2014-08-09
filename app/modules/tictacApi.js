@@ -34,10 +34,11 @@ var apiGet = function(method, params) {
 };
 
 // Returns time summed up for all users or one specific user
-exports.getUserReport = function(startDate, endDate) {
+exports.getUserReport = function(startDate, endDate, forUser) {
     return apiGet('getUserReport', {
         startdate: moment(startDate).format('YYYY-MM-DD'),
-        enddate: moment(endDate).format('YYYY-MM-DD')
+        enddate: moment(endDate).format('YYYY-MM-DD'),
+        forUser: forUser
     });
 };
 
