@@ -6,7 +6,6 @@ var should = chai.should();
 chai.use(require("chai-as-promised"));
 
 var moment = require('moment');
-var parseXml = require('xml2js').parseXml;
 
 describe('Tictac API', function() {
     var api = require('../app/modules/tictacApi');
