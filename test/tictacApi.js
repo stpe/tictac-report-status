@@ -29,9 +29,9 @@ describe('Tictac API', function() {
 
     it('should retrieve project rows', function() {
         return api.getProjectRows(
-                projectId,
                 moment().subtract(1, 'month').startOf('month'),
-                moment().subtract(1, 'month').endOf('month')
+                moment().subtract(1, 'month').endOf('month'),
+                projectId
             ).should.eventually.have.property('TimeSumPerUserAndProject');
     });
 
