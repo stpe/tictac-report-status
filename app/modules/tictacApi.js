@@ -53,7 +53,7 @@ exports.getUserReport = function(startDate, endDate, forUser) {
 };
 
 // Returns all time, cost, expence and sales entries for the given period for a given project
-exports.getProjectRows = function(projectId, startDate, endDate) {
+exports.getProjectRows = function(startDate, endDate, projectId) {
     return apiGet('getUserReport', {
         projectId: projectId,
         startdate: moment(startDate).format('YYYY-MM-DD'),
