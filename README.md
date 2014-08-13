@@ -3,6 +3,10 @@ tictac-report-status
 
 Just hacking... move on. Nothing to see here.
 
+### API Documentation
+
+http://www.tictacmobile.com/webservice/rest/
+
 ### Setup
 
 The following environment variables must be set:
