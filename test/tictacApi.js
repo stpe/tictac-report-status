@@ -32,7 +32,7 @@ describe('Tictac API', function() {
                 moment().subtract(1, 'month').startOf('month'),
                 moment().subtract(1, 'month').endOf('month'),
                 projectId
-            ).should.eventually.have.property('TimeSumPerUserAndProject');
+            ).should.eventually.have.property('TicTacRows');
     });
 
     it('should retrieve normal time', function() {
