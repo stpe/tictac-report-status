@@ -41,4 +41,8 @@ describe('Tictac API', function() {
             moment().subtract(1, 'month').endOf('month')
         ).should.eventually.have.property('TicTacNormalTime');
     });
+
+    it('should retrieve users', function() {
+        return api.getUsers().should.eventually.have.property('TicTacUsers');
+    });
 });

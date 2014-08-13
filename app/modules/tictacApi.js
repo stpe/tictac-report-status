@@ -76,3 +76,8 @@ exports.getNormalTime = function(startDate, endDate) {
 exports.getProjects = function() {
     return apiGet('getProjects');
 };
+
+// Returns all users in the account
+exports.getUsers = function() {
+    return apiGet('getUsers');
+};
