@@ -18,6 +18,9 @@ var apiGet = function(method, params) {
     });
 
     var url = TICTAC_API_BASE_URL + method + '.jsp?' + querystring.stringify(params);
+    if (process.env.TICTAC_LOG_URLS) {
+        console.log(url);
+    }
 
     if (process.env.TICTAC_DEBUG) {
         console.log('API ' + method + ': ' + querystring.stringify(params, ', ', '='));

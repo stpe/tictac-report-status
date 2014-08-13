@@ -14,6 +14,7 @@ TICTAC_API_PASSWORD
 And optionally this one for debug output of API requests:
 ```
 TICTAC_DEBUG=true
+TICTAC_LOG_URLS=true
 ```
 
-For convenience during local development, use a ``.env`` file with [foreman](https://www.npmjs.org/package/foreman).
+For convenience during local development, use a ``.env`` file with [foreman](https://www.npmjs.org/package/foreman) (part of Heroku toolbelt).
