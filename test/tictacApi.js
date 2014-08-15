@@ -36,7 +36,7 @@ describe('Tictac API', function() {
     });
 
     it('should retrieve normal time', function() {
-        return api.getNormalTime(
+        return api.getNormaltime(
             moment().subtract(1, 'month').startOf('month'),
             moment().subtract(1, 'month').endOf('month')
         ).should.eventually.have.property('TicTacNormalTime');

@@ -65,7 +65,7 @@ exports.getProjectRows = function(startDate, endDate, projectId) {
 };
 
 // Returns normal time for the given period
-exports.getNormalTime = function(startDate, endDate) {
+exports.getNormaltime = function(startDate, endDate) {
     return apiGet('getNormaltime', {
         startdate: moment(startDate).format('YYYY-MM-DD'),
         enddate: moment(endDate).format('YYYY-MM-DD')
