@@ -4,6 +4,7 @@ var Promise = require('es6-promise').Promise;
 var querystring = require('querystring');
 
 var TICTAC_API_BASE_URL = 'https://www.tictacmobile.com/webservice/rest/';
+exports.TICTAC_API_BASE_URL = TICTAC_API_BASE_URL;
 
 var apiGet = function(method, params) {
     params = params || {};
