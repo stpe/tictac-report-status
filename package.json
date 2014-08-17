@@ -18,11 +18,12 @@
     "needle": "0.7.8"
   },
   "devDependencies": {
-    "mocha": "^1.21.3",
-    "should": "^4.0.4",
     "chai": "^1.9.1",
     "chai-as-promised": "^4.1.1",
-    "dotenv": "^0.4.0"
+    "dotenv": "^0.4.0",
+    "mocha": "^1.21.3",
+    "nock": "^0.45.0",
+    "should": "^4.0.4"
   },
   "jshintConfig": {
     "node": true
