@@ -19,6 +19,13 @@ describe('dateRange', function() {
         var endDate = moment("2014-07-31");
         var diff = endDate.diff(startDate, "days") + 1;
 
+        var listOfDaysInMonth = [];
+        var currentDate = startDate.clone();
+        while (currentDate <= endDate) {
+            listOfDaysInMonth.push(currentDate.format("YYYY-MM-DD"));
+            currentDate = currentDate.add(1, 'day');
+        }
+
         api.getNormaltime(startDate, endDate)
             .then(function(normalTime) {
                 return dateRange.get(
@@ -30,6 +37,6 @@ describe('dateRange', function() {
             .then(function(range) {
                 return Object.keys(range);
             })
-            .should.eventually.have.length(diff);
+            .should.eventually.have.length(diff).and.deep.equal(listOfDaysInMonth);
     });
 });
