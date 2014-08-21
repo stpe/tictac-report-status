@@ -1,7 +1,7 @@
 var moment = require('moment-range');
 
 exports.get = function(startDate, endDate, normalTime) {
-    var rangeObj = [];
+    var rangeObj = {};
     var range = moment().range(startDate, endDate);
     range.by('days', function(moment) {
         var dateString = moment.format("YYYY-MM-DD");
