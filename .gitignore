@@ -28,3 +28,5 @@ node_modules
 *.sublime-workspace
 
 .env
+
+tictac-api-suggestions.md
