@@ -5,9 +5,11 @@ exports.get = function(startDate, endDate, normalTime) {
     var range = moment().range(startDate, endDate);
     range.by('days', function(moment) {
         var dateString = moment.format("YYYY-MM-DD");
+        var normaltimeObj = getNormaltime(dateString, normalTime);
         rangeObj[dateString] = {
             projects: [],
-            normalTime: getNormaltime(dateString, normalTime)
+            normaltime: normaltimeObj.time,
+            dayType: normaltimeObj.dayType
         };
     });
     return rangeObj;
