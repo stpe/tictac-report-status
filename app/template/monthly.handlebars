@@ -1,0 +1,11 @@
+<h1>Monthly</h1>
+
+{{#each this}}
+    {{this.firstName}} {{this.lastName}} ({{this.email}})
+    {{#each this.dates}}
+        {{this.date}} (DayType: {{this.dayType}}, Normaltime: {{this.normaltime}})
+        {{#each this.projects}}
+            {{this.projectname}} {{this.hours}}
+        {{/each}}
+    {{/each}}
+{{/each}}
