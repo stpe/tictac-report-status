@@ -2,6 +2,7 @@ var Promise = require('es6-promise').Promise;
 var moment = require('moment');
 var tictac = require('./modules/tictacApi');
 var dateRange = require('./modules/dateRange');
+var template = require('./modules/template');
 
 // the whole of previous month
 var startDate = moment().subtract(1, 'month').startOf('month');
@@ -93,7 +94,10 @@ Promise.all([
 })
 .then(function(data) {
     // blurt everything out as prettified json to console for now...
-    console.log(JSON.stringify(data, null, 2));
+    //console.log(JSON.stringify(data, null, 2));
+
+    var html = template.generate(data);
+    console.log(html);
 })
 .catch(function(err) {
     console.log(err);
