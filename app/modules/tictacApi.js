@@ -6,6 +6,10 @@ var querystring = require('querystring');
 var TICTAC_API_BASE_URL = 'https://www.tictacmobile.com/webservice/rest/';
 exports.TICTAC_API_BASE_URL = TICTAC_API_BASE_URL;
 
+if (process.env.TICTAC_MOCK_API) {
+    require('../../test/mock/tictacApiMock');
+}
+
 var apiGet = function(method, params) {
     params = params || {};
     params.userid = process.env.TICTAC_API_USERID;

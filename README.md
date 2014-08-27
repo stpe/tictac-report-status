@@ -19,5 +19,6 @@ And optionally these ones for debugging purposes:
 
 * ``TICTAC_DEBUG=true`` Log API responses to console
 * ``TICTAC_LOG_URLS=true`` Log requested API URLs to console
+* ``TICTAC_MOCK_API=true`` Mock API with static data from */test/data/* (no actual requests will be made)
 
 For convenience during local development, use a ``.env`` file with [foreman](https://www.npmjs.org/package/foreman) (part of Heroku toolbelt).
