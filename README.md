@@ -10,15 +10,14 @@ http://www.tictacmobile.com/webservice/rest/
 ### Setup
 
 The following environment variables must be set:
-```
-TICTAC_API_USERID
-TICTAC_API_PASSWORD
-```
 
-And optionally this one for debug output of API requests:
-```
-TICTAC_DEBUG=true
-TICTAC_LOG_URLS=true
-```
+* ``TICTAC_API_USERID`` User ID to access Tictac API
+* ``TICTAC_API_PASSWORD`` Password for user to access Tictac API
+
+
+And optionally these ones for debugging purposes:
+
+* ``TICTAC_DEBUG=true`` Log API responses to console
+* ``TICTAC_LOG_URLS=true`` Log requested API URLs to console
 
 For convenience during local development, use a ``.env`` file with [foreman](https://www.npmjs.org/package/foreman) (part of Heroku toolbelt).
