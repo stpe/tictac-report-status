@@ -24,16 +24,15 @@ Promise.all([
 
     // create user data
     users.TicTacUsers.TicTacUser.forEach(function(u) {
-        if (u.isActive == "true") {
-            userData[u.userid] = {
-                userid: u.userid,
-                loginName: u.loginName,
-                email: u.email,
-                firstName: u.firstName,
-                lastName: u.lastName,
-                dates: dateRange.getWithNormaltime(startDate, endDate, normaltime)
-            };
-        }
+        userData[u.userid] = {
+            userid: u.userid,
+            loginName: u.loginName,
+            email: u.email,
+            firstName: u.firstName,
+            lastName: u.lastName,
+            active: u.isActive == "true",
+            dates: dateRange.getWithNormaltime(startDate, endDate, normaltime)
+        };
     });
 
     // map project name with id
