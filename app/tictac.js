@@ -43,17 +43,17 @@ Promise.all([
 
     // get list of projects with reported time this period
     var currentProjects = [];
-    var projectScrachpad = [];
+    var projectScratchpad = [];
     userReport.TimeSumPerUserAndProject.row.forEach(function(p) {
-        if (projectScrachpad.indexOf(p.project) == -1) {
-            projectScrachpad.push(p.project);
+        if (projectScratchpad.indexOf(p.project) == -1) {
+            projectScratchpad.push(p.project);
             currentProjects.push({
                 name: p.project,
                 id: projectLookup[p.project]
             });
         }
     });
-    projectScrachpad = null;
+    projectScratchpad = null;
 
     return currentProjects;
 })
