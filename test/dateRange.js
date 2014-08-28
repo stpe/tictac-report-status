@@ -20,7 +20,7 @@ describe('dateRange', function() {
 
         api.getNormaltime(startDate, endDate)
             .then(function(normalTime) {
-                return dateRange.get(
+                return dateRange.getWithNormaltime(
                     startDate,
                     endDate,
                     normalTime

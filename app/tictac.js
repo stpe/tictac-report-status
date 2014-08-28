@@ -31,7 +31,7 @@ Promise.all([
                 email: u.email,
                 firstName: u.firstName,
                 lastName: u.lastName,
-                dates: dateRange.get(startDate, endDate, normaltime)
+                dates: dateRange.getWithNormaltime(startDate, endDate, normaltime)
             };
         }
     });
