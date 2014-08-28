@@ -79,17 +79,6 @@ Promise.all([
         });
     });
 
-    // convert dates into sorted array
-    Object.keys(userData).forEach(function(userid) {
-        var dates = Object.keys(userData[userid].dates).sort();
-        var dateArray = [];
-        dates.forEach(function(date) {
-            userData[userid].dates[date].date = date;
-            dateArray.push(userData[userid].dates[date]);
-        });
-        userData[userid].dates = dateArray;
-    });
-
     return userData;
 })
 .then(function(data) {
