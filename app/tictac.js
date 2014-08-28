@@ -70,11 +70,15 @@ Promise.all([
     // each person has reported and for what project
     data.forEach(function(project) {
         project.TicTacRows.TicTacTime.forEach(function(row) {
-            userData[row.userid].dates[row.date].projects.push({
-                projectname: row.projectname,
-                projid: row.projid,
-                hours: parseFloat(row.hours)
-            });
+            if (userData[row.userid]) {
+                userData[row.userid].dates[row.date].projects.push({
+                    projectname: row.projectname,
+                    projid: row.projid,
+                    hours: parseFloat(row.hours)
+                });
+            } else {
+                console.log("User '"+ row.userid + "' does not exist in userdata.");
+            }
         });
     });
 
