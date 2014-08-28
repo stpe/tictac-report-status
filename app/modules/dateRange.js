@@ -1,6 +1,25 @@
 var moment = require('moment-range');
 
-exports.get = function(startDate, endDate, normalTime) {
+exports.getCalendarRange = function(startDate, endDate) {
+    // get monday on or before start date, get sunday on or after end date
+    var range = moment().range(startDate.day(1), endDate.day(7));
+    var result = [], week = [];
+    range.by('days', function(moment) {
+        week.push({
+            date: moment.format("YYYY-MM-DD"),
+            weekday: moment.format("dddd")
+        });
+
+        // if sunday...
+        if (moment.day() === 0) {
+            result.push(week);
+            week = [];
+        }
+    });
+
+    return result;
+};
+
 exports.getWithNormaltime = function(startDate, endDate, normaltime) {
     var rangeObj = {};
     var range = moment().range(startDate, endDate);
