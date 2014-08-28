@@ -9,6 +9,7 @@ var startDate = moment().subtract(1, 'month').startOf('month');
 var endDate = moment().subtract(1, 'month').endOf('month');
 
 var userData = {};
+var projectData = {};
 
 Promise.all([
     tictac.getUserReport(startDate, endDate),
@@ -39,6 +40,10 @@ Promise.all([
     var projectLookup = {};
     projects.TicTacProjects.TicTacProject.forEach(function(p) {
         projectLookup[p.name] = p.projid;
+        projectData[p.projid] = {
+            projid: p.projid,
+            name: p.name
+        };
     });
 
     // get list of projects with reported time this period
@@ -73,6 +78,7 @@ Promise.all([
             if (userData[row.userid]) {
                 userData[row.userid].dates[row.date].projects.push({
                     projectname: row.projectname,
+                    shortname: projectData[row.projid] ? projectData[row.projid].name : row.projectname,
                     projid: row.projid,
                     hours: parseFloat(row.hours)
                 });
