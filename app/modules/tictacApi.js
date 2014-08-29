@@ -38,7 +38,7 @@ var apiGet = function(method, params) {
                     return reject(Error(err));
                 }
                 if (data.errorMessage) {
-                    return reject(Error(data.errorMessage));
+                    return reject(Error(method + ': ' + data.errorMessage));
                 }
 
                 if (process.env.TICTAC_DEBUG) {
