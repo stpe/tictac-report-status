@@ -6,17 +6,23 @@ exports.getCalendarRange = function(startDate, endDate) {
     var result = [], week = [];
     range.by('days', function(moment) {
         week.push({
-            date: moment.format("YYYY-MM-DD"),
-            weekday: moment.format("dddd")
+            date: moment.format("YYYY-MM-DD")
         });
 
-        // if sunday...
-        if (moment.day() === 0) {
+        if (moment.day() === 0) { // if end of week (sunday)...
             result.push(week);
             week = [];
         }
     });
+    return result;
+};
 
+exports.getWeekdays = function(startDate, endDate) {
+    var range = moment().range(startDate, endDate);
+    var result = [];
+    range.by('days', function(moment) {
+        result.push(moment.format("dddd"));
+    });
     return result;
 };
 
