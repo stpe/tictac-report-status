@@ -91,11 +91,41 @@ Promise.all([
     return userData;
 })
 .then(function(data) {
-    // blurt everything out as prettified json to console for now...
-    //console.log(JSON.stringify(data, null, 2));
+    // convert into calendar structure for presentation
+    var calendarRange = dateRange.getCalendarRange(startDate, endDate);
+    // get name of weekdays for header row in presentation
+    var weekdays = dateRange.getWeekdays(startDate.clone().day(1), startDate.clone().day(7));
 
-    var html = template.generate(data);
-    console.log(html);
+    Object.keys(data)
+        .filter(function(user) {
+            // only do active users
+            return data[user].active;
+        })
+        .forEach(function(user) {
+            var html = template.generate({
+                calendar: calendarRange.map(function(week) {
+                    return week.map(function(day) {
+                        return {
+                            date: day.date,
+                            user: data[user].dates[day.date],
+                            type: function(dayType) {
+                                switch (dayType) {
+                                    case 0: return "weekend";
+                                    case 1: return "whole";
+                                    case 2: return "half";
+                                    case 3: return "holiday";
+                                    case 4: return "half";
+                                    default: return "outofrange";
+                                }
+                            }(data[user].dates[day.date] ? data[user].dates[day.date].dayType : -1)
+                        };
+                    });
+                }),
+                weekdays: weekdays,
+                user: data[user]
+            });
+            console.log(html);
+        });
 })
 .catch(function(err) {
     console.log(err);
