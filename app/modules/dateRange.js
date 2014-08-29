@@ -2,7 +2,7 @@ var moment = require('moment-range');
 
 exports.getCalendarRange = function(startDate, endDate) {
     // get monday on or before start date, get sunday on or after end date
-    var range = moment().range(startDate.day(1), endDate.day(7));
+    var range = moment().range(startDate.clone().day(1), endDate.clone().day(7));
     var result = [], week = [];
     range.by('days', function(moment) {
         week.push({
