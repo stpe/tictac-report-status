@@ -1,11 +1,55 @@
-<h1>Monthly</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <style>
+        html {
+            font-family: Helvetica, sans-serif;
+        }
+        .date {
+            font-size: 12px;
+        }
+        .whole {
+            background-color: #0f0;
+        }
+        .half {
+            background-color: #00f;
+        }
+        .weekend {
+            background-color: #fff;
+        }
+        .holiday {
+            background-color: #f00;
+        }
+        .outofrange {
+            color: #777;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
 
-{{#each this}}
-    {{this.firstName}} {{this.lastName}} ({{this.email}})
-    {{#each this.dates}}
-        {{this.date}} (DayType: {{this.dayType}}, Normaltime: {{this.normaltime}})
-        {{#each this.projects}}
-            {{this.projectname}} {{this.hours}}
-        {{/each}}
-    {{/each}}
+<h2>{{user.firstName}} {{user.lastName}} ({{user.email}})</h2>
+
+<table>
+<thead>
+{{#each this.weekdays}}
+    <th>{{this}}</th>
 {{/each}}
+</thead>
+{{#each calendar}}
+    <tr>
+    {{#each this}}
+        <td class="date {{this.type}}">
+        {{this.date}} <!--{{#if this.user.normaltime}}({{this.user.normaltime}}){{/if}}-->
+        {{#each this.user.projects}}
+            <div>{{shortname}} {{hours}}h</div>
+        {{/each}}
+        </td>
+    {{/each}}
+    </tr>
+{{/each}}
+</table>
+
+</body>
+</html>
