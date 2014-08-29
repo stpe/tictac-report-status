@@ -1,8 +1,6 @@
 var nock = require('nock');
 var api = require('../../app/modules/tictacApi');
 
-console.log("Setting up Tictac API mock...");
-
 nock(api.TICTAC_API_BASE_URL)
     .persist()
     .filteringPath(/webservice\/rest\/getProjectRows\.jsp\?projectId=(\d+).*/, 'getProjectRows$1')
