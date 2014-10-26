@@ -13,19 +13,19 @@
     "node": "0.10.x"
   },
   "dependencies": {
-    "es6-promise": "1.0.0",
-    "handlebars": "^2.0.0-beta.1",
-    "moment": "2.8.2",
-    "moment-range": "^1.0.2",
-    "needle": "0.7.8"
+    "es6-promise": "2.0.0",
+    "handlebars": "2.0.0",
+    "moment": "2.8.3",
+    "moment-range": "^1.0.5",
+    "needle": "0.7.10"
   },
   "devDependencies": {
-    "chai": "^1.9.1",
+    "chai": "^1.9.2",
     "chai-as-promised": "^4.1.1",
     "dotenv": "^0.4.0",
-    "mocha": "^1.21.3",
-    "nock": "^0.45.0",
-    "should": "^4.0.4"
+    "mocha": "^2.0.0",
+    "nock": "^0.48.1",
+    "should": "^4.1.0"
   },
   "jshintConfig": {
     "node": true
