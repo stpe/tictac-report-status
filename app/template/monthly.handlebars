@@ -8,6 +8,7 @@
         }
         .date {
             font-size: 12px;
+            text-align: center;
         }
         .whole {
             background-color: #0f0;
@@ -41,7 +42,7 @@
     <tr>
     {{#each this}}
         <td class="date {{this.type}}">
-        {{this.date}} <!--{{#if this.user.normaltime}}({{this.user.normaltime}}){{/if}}-->
+        {{this.day}} <!--{{#if this.user.normaltime}}({{this.user.normaltime}}){{/if}}-->
         {{#each this.user.projects}}
             <div>{{shortname}} {{hours}}h</div>
         {{/each}}

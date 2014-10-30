@@ -3,6 +3,7 @@ var moment = require('moment');
 var tictac = require('./modules/tictacApi');
 var dateRange = require('./modules/dateRange');
 var template = require('./modules/template');
+var email = require('./modules/sendEmail');
 
 // the whole of previous month
 var startDate = moment().subtract(1, 'month').startOf('month');
@@ -107,6 +108,7 @@ Promise.all([
                     return week.map(function(day) {
                         return {
                             date: day.date,
+                            day: day.day,
                             user: data[user].dates[day.date],
                             type: function(dayType) {
                                 switch (dayType) {
@@ -124,7 +126,15 @@ Promise.all([
                 weekdays: weekdays,
                 user: data[user]
             });
+
             console.log(html);
+
+            // email.send(
+            //     data[user].email,
+            //     html,
+            //     startDate,
+            //     endDate
+            // );
         });
 })
 .catch(function(err) {
