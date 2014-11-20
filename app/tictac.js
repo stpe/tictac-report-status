@@ -77,9 +77,11 @@ Promise.all([
     data.forEach(function(project) {
         project.TicTacRows.TicTacTime.forEach(function(row) {
             if (userData[row.userid]) {
+                var shortname = projectData[row.projid] ? projectData[row.projid].name : row.projectname;
                 userData[row.userid].dates[row.date].projects.push({
                     projectname: row.projectname,
-                    shortname: projectData[row.projid] ? projectData[row.projid].name : row.projectname,
+                    shortname: shortname,
+                    slug: shortname.toLowerCase().replace(/[^a-z]/g, ""),
                     projid: row.projid,
                     hours: parseFloat(row.hours)
                 });
