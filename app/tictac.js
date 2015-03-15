@@ -75,7 +75,14 @@ Promise.all([
     // parse each project to find out how many hours a day
     // each person has reported and for what project
     data.forEach(function(project) {
-        project.TicTacRows.TicTacTime.forEach(function(row) {
+        var TicTacTime = project.TicTacRows.TicTacTime || [];
+
+        // if object (only one entry) make it as an array
+        if (typeof TicTacTime == "object") {
+            TicTacTime = [TicTacTime];
+        }
+
+        TicTacTime.forEach(function(row) {
             if (userData[row.userid]) {
                 var shortname = projectData[row.projid] ? projectData[row.projid].name : row.projectname;
                 userData[row.userid].dates[row.date].projects.push({
@@ -86,6 +93,7 @@ Promise.all([
                     hours: parseFloat(row.hours)
                 });
             } else {
+                // debug
                 console.log("User '"+ row.userid + "' does not exist in userdata.");
             }
         });
