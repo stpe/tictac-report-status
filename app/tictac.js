@@ -99,6 +99,12 @@ Promise.all([
     // get name of weekdays for header row in presentation
     var weekdays = dateRange.getWeekdays(startDate.clone().day(1), startDate.clone().day(7));
 
+    // choose template depending on period length
+    var templateName = "weekly";
+    if (endDate.diff(startDate, 'days') > 25) {
+        templateName = "monthly";
+    }
+
     Object.keys(data)
         .filter(function(user) {
             // only do active users
@@ -127,7 +133,7 @@ Promise.all([
                 }),
                 weekdays: weekdays,
                 user: data[user]
-            });
+            }, templateName);
 
             console.log(html);
 
