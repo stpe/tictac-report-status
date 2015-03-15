@@ -44,7 +44,7 @@ exports.getWithNormaltime = function(startDate, endDate, normaltime) {
 
 // dateString on format YYYY-MM-DD, normalTime is API response as object
 function getNormaltime(dateString, normaltime) {
-    var dates = normaltime.TicTacNormalTime.NormalTime;
+    var dates = normaltime.TicTacNormalTime.NormalTime || []; // if no normal time, assume weekend
     for (var i = 0; i < dates.length; i++) {
         if (dates[i].date == dateString) {
             return {
