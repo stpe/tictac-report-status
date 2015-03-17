@@ -78,7 +78,7 @@ Promise.all([
         var TicTacTime = project.TicTacRows.TicTacTime || [];
 
         // if object (only one entry) make it as an array
-        if (typeof TicTacTime == "object") {
+        if (TicTacTime.constructor !== Array) {
             TicTacTime = [TicTacTime];
         }
 
