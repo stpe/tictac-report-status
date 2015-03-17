@@ -55,11 +55,6 @@
 <p>Hello {{user.firstName}}, this is your week!</p>
 
 <table>
-<thead>
-{{#each this.weekdays}}
-    <th>{{this}}</th>
-{{/each}}
-</thead>
 {{#each calendar}}
     {{#each this}}
     <tr class="date {{this.type}} {{#each this.user.projects}}{{slug}}{{/each}}">
