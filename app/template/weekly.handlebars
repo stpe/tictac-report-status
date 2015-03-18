@@ -6,38 +6,76 @@
         html {
             font-family: Helvetica, sans-serif;
         }
+
+        .header {
+            background-color: #3DC371;
+            color: #fff;
+            text-align: center;
+            padding: 1.8em 0;
+            margin-bottom: 1em;
+            line-height: 1.5;
+        }
+        .title {
+            font-size: 1.8em;
+        }
+        .subtitle {
+            font-size: 1.2em;
+        }
+        .tictaclink {
+            background-color: #FF6E50;
+            padding: 10px 20px;
+            margin-right: 20px;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        table {
+            border-spacing: 0;
+        }
         th {
             font-weight: normal;
             color: #666;
         }
-        .date {
+        tr {
             font-size: 12px;
-            text-align: center;
             height: 36px;
-            border: 2px solid #fff;
+            color: #fff;
+        }
+        td {
+            padding: 10px 10px;
+            border-bottom: 1px solid #fff;
+        }
+        .row {
+            color: #fff;
+        }
+        .date {
+            text-align: center;
+        }
+        .projects {
+
+            line-height: 1.5;
+            min-width: 200px;
         }
         .whole {
-            color: #fff;
             background-color: #3DC371;
-            border: 2px solid #3DC371;
         }
         .half {
             background-color: #fff;
-            border: 2px solid #3DC371;
         }
         .weekend {
             color: #666;
-            border: 2px solid #F7F7F7;
+            background-color: #eee;
         }
         .holiday {
-            color: #F57F1F;
             background-color: #F57F1F;
-            border: 2px solid #F57F1F;
         }
         .outofrange {
             color: #666;
-            background-color: #F7F7F7;
-            border: 2px solid #F7F7F7;
+            background-color: #eee;
+        }
+
+        .absence {
+            background-color: #FFCC50;
         }
 /*
  purple: 6240B4;
@@ -45,29 +83,43 @@
  red: FF6E50;
  yellow: FFCC50;
 */
-        .absence {
 
-        }
     </style>
 </head>
 <body>
 
-<p>Hello {{user.firstName}}, this is your week!</p>
+<div class="header">
+    <div class="title">Hello <b>{{user.firstName}}</b>!</div>
+    <div class="subtitle">This is your week!</div>
+</div>
 
 <table>
 {{#each calendar}}
     {{#each this}}
-    <tr class="date {{this.type}} {{#each this.user.projects}}{{slug}}{{/each}}">
-        <td>{{this.day}}</td>
-        <td>
+    <tr class="row {{this.type}} {{#each this.user.projects}}{{slug}}{{/each}}">
+        <td class="date">{{formatDate this.date "ddd D/M"}}</td>
+        <td class="projects">
         {{#each this.user.projects}}
-            <div>{{slug}} {{hours}}</div>
+            <div>
+                {{shortname}}
+                {{hours}}h
+            </div>
         {{/each}}
+        {{#if_eq this.type "holiday"}}
+            <div>Holiday</div>
+        {{/if_eq}}
         </td>
     </tr>
     {{/each}}
 {{/each}}
 </table>
+
+<p>Not correct? Do your time report now!</p>
+
+<p>
+    <a class="tictaclink" href="http://www.tictacmobile.com/login">Tictac Desktop</a>
+    <a class="tictaclink" href="https://www.tictacmobile.com/mobile/">Tictac Mobile</a>
+</p>
 
 </body>
 </html>
