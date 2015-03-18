@@ -5,9 +5,16 @@ var dateRange = require('./modules/dateRange');
 var template = require('./modules/template');
 var email = require('./modules/sendEmail');
 
+// set locale
+moment.locale('sv');
+
 // the whole of previous month
-var startDate = moment().subtract(1, 'month').startOf('month');
-var endDate = moment().subtract(1, 'month').endOf('month');
+// var startDate = moment().subtract(1, "month").startOf("month");
+// var endDate = moment().subtract(1, "month").endOf("month");
+
+// previous week
+var startDate = moment().startOf("week").subtract(1, "week").day(1);
+var endDate = moment().endOf("week").subtract(1, "week").day(0);
 
 var userData = {};
 var projectData = {};
