@@ -153,14 +153,12 @@ Promise.all([
                 user: data[user]
             }, templateName);
 
-            console.log(html);
-
-            // email.send(
-            //     data[user].email,
-            //     html,
-            //     startDate,
-            //     endDate
-            // );
+            email.send(
+                data[user].email,
+                html,
+                startDate,
+                endDate
+            );
         });
 })
 .catch(function(err) {
