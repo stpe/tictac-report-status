@@ -3,7 +3,7 @@ tictac-report-status
 
 Just hacking... move on. Nothing to see here.
 
-### API Documentation
+### Tictac API Documentation
 
 http://www.tictacmobile.com/webservice/rest/
 
@@ -13,7 +13,13 @@ The following environment variables must be set:
 
 * ``TICTAC_API_USERID`` User ID to access Tictac API
 * ``TICTAC_API_PASSWORD`` Password for user to access Tictac API
+* ``SENDGRID_USERNAME`` SendGrid username
+* ``SENDGRID_PASSWORD`` SendGrid password
 
+For configuration:
+
+* ``TICTAC_WORKGROUP`` Filter users by workgroup
+* ``FROM_EMAIL`` Email address to use as from-address in sent emails
 
 And optionally these ones for debugging purposes:
 
