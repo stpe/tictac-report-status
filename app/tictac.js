@@ -40,6 +40,7 @@ Promise.all([
             firstName: u.firstName,
             lastName: u.lastName,
             active: u.isActive == "true",
+            workgroup: u.workgroup,
             dates: dateRange.getWithNormaltime(startDate, endDate, normaltime)
         };
     });
@@ -123,7 +124,7 @@ Promise.all([
     Object.keys(data)
         .filter(function(user) {
             // only do active users
-            return data[user].active;
+            return data[user].active && data[user].workgroup == process.env.TICTAC_WORKGROUP;
         })
         .forEach(function(user) {
             var html = template.generate({
