@@ -3,7 +3,7 @@ var api = require('../../app/modules/tictacApi');
 
 nock(api.TICTAC_API_BASE_URL)
     .persist()
-    .filteringPath(/webservice\/rest\/getProjectRows\.jsp\?projectId=(\d+).*/, 'getProjectRows$1')
+    .filteringPath(/webservice\/rest\/getProjectRows\.jsp\?projectId=(\d+).*/, 'webservice/rest/getProjectRows$1')
     .get('/getProjectRows1344344083404')
     .replyWithFile(200, __dirname + '/../../test/data/getProjectRows1344344083404.xml', {
         'content-type': 'application/xml'
@@ -27,7 +27,7 @@ nock(api.TICTAC_API_BASE_URL)
 
 nock(api.TICTAC_API_BASE_URL)
     .persist()
-    .filteringPath(/webservice\/rest\/(\w+)\.jsp?.*/, '$1')
+    .filteringPath(/webservice\/rest\/(\w+)\.jsp?.*/, 'webservice/rest/$1')
     .get('/getUsers')
     .replyWithFile(200, __dirname + '/../../test/data/getUsers.xml', {
         'content-type': 'application/xml'
