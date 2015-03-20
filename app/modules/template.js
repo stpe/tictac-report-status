@@ -24,3 +24,8 @@ handlebars.registerHelper('if_eq', function(a, b, opts) {
 handlebars.registerHelper("formatDate", function(datetime, format) {
     return moment(datetime).format(format);
 });
+
+// percent
+handlebars.registerHelper("percent", function(value, total) {
+    return Math.round(value / total * 100) + "%";
+});
