@@ -150,7 +150,22 @@ Promise.all([
                     });
                 }),
                 weekdays: weekdays,
-                user: data[user]
+                user: data[user],
+                stats: (function() {
+                    var totalNormal = 0;
+                    var totalHours = 0;
+                    Object.keys(data[user].dates).forEach(function(date) {
+                        totalNormal += data[user].dates[date].normaltime;
+                        data[user].dates[date].projects.forEach(function(project) {
+                            totalHours += project.hours;
+                        });
+                    });
+
+                    return {
+                        totalNormal: totalNormal,
+                        totalHours: totalHours
+                    };
+                })()
             }, templateName);
 
             email.send(
