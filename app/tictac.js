@@ -51,7 +51,8 @@ Promise.all([
         projectLookup[p.name] = p.projid;
         projectData[p.projid] = {
             projid: p.projid,
-            name: p.name
+            name: p.name,
+            company: p.invoiceCorpname
         };
     });
 
@@ -95,11 +96,13 @@ Promise.all([
         TicTacTime.forEach(function(row) {
             if (userData[row.userid]) {
                 var shortname = projectData[row.projid] ? projectData[row.projid].name : row.projectname;
+                var company = projectData[row.projid] ? projectData[row.projid].company : "";
                 userData[row.userid].dates[row.date].projects.push({
                     projectname: row.projectname,
                     shortname: shortname,
                     slug: shortname.toLowerCase().replace(/[^a-z]/g, ""),
                     projid: row.projid,
+                    company: company,
                     hours: parseFloat(row.hours)
                 });
             } else {
