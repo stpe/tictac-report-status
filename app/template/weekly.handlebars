@@ -41,21 +41,47 @@
             height: 36px;
             color: #fff;
         }
-        td {
-            padding: 10px 10px;
-            border-bottom: 1px solid #fff;
-        }
         .row {
             color: #fff;
         }
         .date {
+            padding: 10px 10px;
+            border-bottom: 1px solid #fff;
             text-align: center;
         }
         .projects {
-
+            padding: 10px 10px;
+            border-bottom: 1px solid #fff;
             line-height: 1.5;
             min-width: 200px;
         }
+        .divider {
+            height: 18px;
+        }
+
+        .hours-project {
+            background-color: #3DC371;
+            float: left;
+        }
+        .hours-normal {
+            background-color: #eee;
+        }
+        .hours-normal td {
+            position: relative;
+            padding: 0;
+        }
+        .hours-project-number {
+            padding: 10px;
+            display: inline-block;
+        }
+        .hours-normal-number {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 10px;
+            color: #666;
+        }
+
         .whole {
             background-color: #3DC371;
         }
@@ -111,6 +137,15 @@
         </td>
     </tr>
     {{/each}}
+    <tr class="divider"><td colspan="2"></td></tr>
+    <tr class="hours-normal">
+        <td colspan="2">
+            <div style="width: {{percent ../stats.totalHours ../stats.totalNormal}}" class="hours-project">
+                <span class="hours-project-number">{{../stats.totalHours}}h</span>
+            </div>
+            <span class="hours-normal-number">{{../stats.totalNormal}}h</span>
+        </td>
+    </tr>
 {{/each}}
 </table>
 
