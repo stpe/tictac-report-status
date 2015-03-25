@@ -20,6 +20,7 @@ For configuration:
 
 * ``TICTAC_WORKGROUP`` Filter users by workgroup
 * ``FROM_EMAIL`` Email address to use as from-address in sent emails
+* ``WRITE_TO_FILE`` If set, output written to file instead of sent as email (useful for testing purposes)
 
 And optionally these ones for debugging purposes:
 

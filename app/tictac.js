@@ -4,6 +4,7 @@ var tictac = require('./modules/tictacApi');
 var dateRange = require('./modules/dateRange');
 var template = require('./modules/template');
 var email = require('./modules/sendEmail');
+var fs = require('fs');
 
 // set locale
 moment.locale('sv');
@@ -164,6 +165,13 @@ Promise.all([
                         });
                     });
 
+    if (process.env.WRITE_TO_FILE) {
+        // remove output file to start empty, since we're going to append to it
+        try {
+            fs.unlinkSync(process.env.WRITE_TO_FILE);
+        } catch(error) {}
+    }
+
                     return {
                         totalNormal: totalNormal,
                         totalHours: totalHours
@@ -171,13 +179,16 @@ Promise.all([
                 })()
             }, templateName);
 
+        if (process.env.WRITE_TO_FILE) {
+            fs.appendFileSync(process.env.WRITE_TO_FILE, html);
+        } else {
             email.send(
                 data[user].email,
                 html,
                 startDate,
                 endDate
             );
-        });
+        }
 })
 .catch(function(err) {
     console.log(err);
