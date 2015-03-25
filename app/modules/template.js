@@ -27,5 +27,5 @@ handlebars.registerHelper("formatDate", function(datetime, format) {
 
 // percent
 handlebars.registerHelper("percent", function(value, total) {
-    return Math.round(value / total * 100) + "%";
+    return Math.min(100, Math.round(value / total * 100)) + "%";
 });
