@@ -132,9 +132,6 @@ Promise.all([
         .filter(function(user) {
             // only do active users
             return data[user].active && data[user].workgroup == process.env.TICTAC_WORKGROUP;
-        })
-        .filter(function(user) {
-            return data[user].firstName == "Stefan";
         });
 
     // put together common statistics
