@@ -7,7 +7,7 @@
     "start": "foreman run worker",
     "test": "mocha test",
     "pretest": "jshint app",
-    "demo": "foreman run worker > temp/test.html && open temp/test.html"
+    "demo": "foreman run worker && open temp/test.html"
   },
   "engines": {
     "node": "0.10.x"
