@@ -4,6 +4,7 @@ var tictac = require('./modules/tictacApi');
 var dateRange = require('./modules/dateRange');
 var template = require('./modules/template');
 var email = require('./modules/sendEmail');
+var textualize = require('./modules/textualize');
 var fs = require('fs');
 
 // set locale
@@ -127,43 +128,51 @@ Promise.all([
         templateName = "monthly";
     }
 
-    Object.keys(data)
+    var users = Object.keys(data)
         .filter(function(user) {
             // only do active users
             return data[user].active && data[user].workgroup == process.env.TICTAC_WORKGROUP;
         })
-        .forEach(function(user) {
-            var html = template.generate({
-                calendar: calendarRange.map(function(week) {
-                    return week.map(function(day) {
-                        return {
-                            date: day.date,
-                            day: day.day,
-                            user: data[user].dates[day.date],
-                            type: function(dayType) {
-                                switch (dayType) {
-                                    case 0: return "weekend";
-                                    case 1: return "whole";
-                                    case 2: return "half";
-                                    case 3: return "holiday";
-                                    case 4: return "half";
-                                    default: return "outofrange";
-                                }
-                            }(data[user].dates[day.date] ? data[user].dates[day.date].dayType : -1)
-                        };
-                    });
-                }),
-                weekdays: weekdays,
-                user: data[user],
-                stats: (function() {
-                    var totalNormal = 0;
-                    var totalHours = 0;
-                    Object.keys(data[user].dates).forEach(function(date) {
-                        totalNormal += data[user].dates[date].normaltime;
-                        data[user].dates[date].projects.forEach(function(project) {
-                            totalHours += project.hours;
-                        });
-                    });
+        .filter(function(user) {
+            return data[user].firstName == "Stefan";
+        });
+
+    // put together common statistics
+    var whoDidWhat = {};
+    var usersWhoDidTheirTimeReport = {};
+    users.forEach(function(user) {
+        Object.keys(data[user].dates).forEach(function(date) {
+            data[user].dates[date].projects.forEach(function(project) {
+                var projectName = project.company;
+
+                // if internal, use projectname too
+                if (projectName == "Internal") {
+                    projectName += ";" + project.projectname;
+                }
+
+                if (!whoDidWhat[projectName]) {
+                    whoDidWhat[projectName] = {};
+                }
+
+                whoDidWhat[projectName][user] = data[user].firstName;
+
+                if (!usersWhoDidTheirTimeReport[user]) {
+                    usersWhoDidTheirTimeReport[user] = 1;
+                }
+            });
+        });
+    });
+
+    // users who did not do their time report last week
+    var usersWhoDidNotTimeReport = {};
+    users.forEach(function(user) {
+        if (!usersWhoDidTheirTimeReport[user]) {
+            usersWhoDidNotTimeReport[user] = data[user].firstName;
+        }
+    });
+    whoDidWhat["Internal;DidNotTimeReport"] = usersWhoDidNotTimeReport;
+
+    var whoDidWhatString = textualize.projects(whoDidWhat);
 
     if (process.env.WRITE_TO_FILE) {
         // remove output file to start empty, since we're going to append to it
@@ -172,12 +181,46 @@ Promise.all([
         } catch(error) {}
     }
 
+    users.forEach(function(user) {
+        var html = template.generate({
+            calendar: calendarRange.map(function(week) {
+                return week.map(function(day) {
                     return {
-                        totalNormal: totalNormal,
-                        totalHours: totalHours
+                        date: day.date,
+                        day: day.day,
+                        user: data[user].dates[day.date],
+                        type: function(dayType) {
+                            switch (dayType) {
+                                case 0: return "weekend";
+                                case 1: return "whole";
+                                case 2: return "half";
+                                case 3: return "holiday";
+                                case 4: return "half";
+                                default: return "outofrange";
+                            }
+                        }(data[user].dates[day.date] ? data[user].dates[day.date].dayType : -1)
                     };
-                })()
-            }, templateName);
+                });
+            }),
+            weekdays: weekdays,
+            user: data[user],
+            team: whoDidWhatString,
+            stats: (function() {
+                var totalNormal = 0;
+                var totalHours = 0;
+                Object.keys(data[user].dates).forEach(function(date) {
+                    totalNormal += data[user].dates[date].normaltime;
+                    data[user].dates[date].projects.forEach(function(project) {
+                        totalHours += project.hours;
+                    });
+                });
+
+                return {
+                    totalNormal: totalNormal,
+                    totalHours: totalHours
+                };
+            })()
+        }, templateName);
 
         if (process.env.WRITE_TO_FILE) {
             fs.appendFileSync(process.env.WRITE_TO_FILE, html);
@@ -189,6 +232,7 @@ Promise.all([
                 endDate
             );
         }
+    });
 })
 .catch(function(err) {
     console.log(err);
