@@ -170,8 +170,10 @@ Promise.all([
             usersWhoDidNotTimeReport[user] = data[user].firstName;
         }
     });
-    whoDidWhat["Internal;DidNotTimeReport"] = usersWhoDidNotTimeReport;
 
+    if (Object.keys(usersWhoDidNotTimeReport).length > 0) {
+        whoDidWhat["Internal;DidNotTimeReport"] = usersWhoDidNotTimeReport;
+    }
     var whoDidWhatString = textualize.projects(whoDidWhat);
 
     if (process.env.WRITE_TO_FILE) {
