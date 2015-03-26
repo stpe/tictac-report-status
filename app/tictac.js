@@ -134,44 +134,8 @@ Promise.all([
             return data[user].active && data[user].workgroup == process.env.TICTAC_WORKGROUP;
         });
 
-    // put together common statistics
-    var whoDidWhat = {};
-    var usersWhoDidTheirTimeReport = {};
-    users.forEach(function(user) {
-        Object.keys(data[user].dates).forEach(function(date) {
-            data[user].dates[date].projects.forEach(function(project) {
-                var projectName = project.company;
 
-                // if internal, use projectname too
-                if (projectName == "Internal") {
-                    projectName += ";" + project.projectname;
-                }
-
-                if (!whoDidWhat[projectName]) {
-                    whoDidWhat[projectName] = {};
-                }
-
-                whoDidWhat[projectName][user] = data[user].firstName;
-
-                if (!usersWhoDidTheirTimeReport[user]) {
-                    usersWhoDidTheirTimeReport[user] = 1;
-                }
-            });
-        });
-    });
-
-    // users who did not do their time report last week
-    var usersWhoDidNotTimeReport = {};
-    users.forEach(function(user) {
-        if (!usersWhoDidTheirTimeReport[user]) {
-            usersWhoDidNotTimeReport[user] = data[user].firstName;
-        }
-    });
-
-    if (Object.keys(usersWhoDidNotTimeReport).length > 0) {
-        whoDidWhat["Internal;DidNotTimeReport"] = usersWhoDidNotTimeReport;
-    }
-    var whoDidWhatString = textualize.projects(whoDidWhat);
+    var whoDidWhatString = textualize.projects(users, data);
 
     if (process.env.WRITE_TO_FILE) {
         // remove output file to start empty, since we're going to append to it
