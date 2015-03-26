@@ -1,4 +1,10 @@
-exports.projects = function(projects) {
+exports.projects = function(users, data) {
+  var projectsData = exports.projectsData(users, data);
+
+  return exports.projectsString(projectsData);
+};
+
+exports.projectsString = function(projects) {
   var projectStrings = [];
 
   Object.keys(projects).forEach(function(project, index, arr) {
@@ -7,7 +13,7 @@ exports.projects = function(projects) {
       });
 
       // string of team members
-      var membersStr = members.slice(0, Math.max(1, members.length - 1)).join(", ")
+      var membersStr = members.slice(0, Math.max(1, members.length - 1)).join(", ");
       if (members.length > 1) {
           membersStr += " and " + members.slice(-1);
       }
@@ -39,7 +45,7 @@ exports.projects = function(projects) {
                 membersStr += " did not time report :((((.";
                 break;
               default:
-                console.log("Skipping internal project: " + projectName);
+                // skip project
                 membersStr = "";
           }
         }
@@ -50,4 +56,44 @@ exports.projects = function(projects) {
   });
 
   return projectStrings.join(" ");
+};
+
+exports.projectsData = function(users, data) {
+    // put together common statistics
+    var whoDidWhat = {};
+    var usersWhoDidTheirTimeReport = {};
+    users.forEach(function(user) {
+        Object.keys(data[user].dates).forEach(function(date) {
+            data[user].dates[date].projects.forEach(function(project) {
+                var projectName = project.company;
+
+                // if internal, use projectname too
+                if (projectName == "Internal") {
+                    projectName += ";" + project.projectname;
+                }
+
+                if (!whoDidWhat[projectName]) {
+                    whoDidWhat[projectName] = {};
+                }
+
+                whoDidWhat[projectName][user] = data[user].firstName;
+
+                if (!usersWhoDidTheirTimeReport[user]) {
+                    usersWhoDidTheirTimeReport[user] = 1;
+                }
+            });
+        });
+    });
+
+    // users who did not do their time report last week
+    var usersWhoDidNotTimeReport = {};
+    users.forEach(function(user) {
+        if (!usersWhoDidTheirTimeReport[user]) {
+            usersWhoDidNotTimeReport[user] = data[user].firstName;
+        }
+    });
+
+    if (Object.keys(usersWhoDidNotTimeReport).length > 0) {
+        whoDidWhat["Internal;DidNotTimeReport"] = usersWhoDidNotTimeReport;
+    }
 };
