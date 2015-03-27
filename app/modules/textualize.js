@@ -96,4 +96,6 @@ exports.projectsData = function(users, data) {
     if (Object.keys(usersWhoDidNotTimeReport).length > 0) {
         whoDidWhat["Internal;DidNotTimeReport"] = usersWhoDidNotTimeReport;
     }
+
+    return whoDidWhat;
 };
