@@ -124,9 +124,10 @@
     <div class="subtitle">Is your time report updated?</div>
 </div>
 
-<p><b>What we did:</b> {{{team}}}</p>
-
-<p><b>What you did, in detail:</b></p>
+{{#if team}}
+    <p><b>What we did:</b> {{{team}}}</p>
+    <p><b>What you did, in detail:</b></p>
+{{/if}}
 
 <table>
 {{#each calendar}}
