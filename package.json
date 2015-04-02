@@ -14,20 +14,20 @@
   },
   "dependencies": {
     "es6-promise": "2.0.1",
-    "handlebars": "^3.0.0",
-    "juice": "^1.0.0",
-    "moment": "^2.9.0",
-    "moment-range": "^1.0.7",
-    "needle": "^0.8.2",
-    "sendgrid": "^1.6.0"
+    "handlebars": "3.0.1",
+    "juice": "1.0.0",
+    "moment": "2.9.0",
+    "moment-range": "1.0.7",
+    "needle": "0.9.1",
+    "sendgrid": "1.6.0"
   },
   "devDependencies": {
-    "chai": "^2.1.2",
-    "chai-as-promised": "^4.3.0",
-    "dotenv": "^1.0.0",
-    "mocha": "^2.2.1",
-    "nock": "^1.2.0",
-    "should": "^5.2.0"
+    "chai": "2.2.0",
+    "chai-as-promised": "4.3.0",
+    "dotenv": "1.1.0",
+    "mocha": "2.2.1",
+    "nock": "1.4.0",
+    "should": "5.2.0"
   },
   "jshintConfig": {
     "node": true
