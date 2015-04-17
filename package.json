@@ -13,21 +13,21 @@
     "node": "0.10.x"
   },
   "dependencies": {
-    "es6-promise": "2.0.1",
+    "es6-promise": "2.1.0",
     "handlebars": "3.0.1",
     "juice": "1.0.0",
-    "moment": "2.9.0",
-    "moment-range": "1.0.7",
-    "needle": "0.9.1",
-    "sendgrid": "1.6.0"
+    "moment": "2.10.2",
+    "moment-range": "1.0.9",
+    "needle": "0.9.2",
+    "sendgrid": "1.6.1"
   },
   "devDependencies": {
     "chai": "2.2.0",
     "chai-as-promised": "4.3.0",
     "dotenv": "1.1.0",
-    "mocha": "2.2.1",
-    "nock": "1.4.0",
-    "should": "5.2.0"
+    "mocha": "2.2.4",
+    "nock": "1.6.0",
+    "should": "6.0.1"
   },
   "jshintConfig": {
     "node": true
