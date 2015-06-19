@@ -41,6 +41,16 @@ var apiGet = function(method, params) {
                     return reject(Error(method + ': ' + data.errorMessage));
                 }
 
+                // looks like Needle is not converting into JSON when there is an
+                // error message, so we try to parse manually
+                if (typeof data == "string") {
+                    var match = data.match(/<errorMessage>(.*?)<\/errorMessage>/);
+                    if (match) {
+                        console.log(url);
+                        return reject(Error(method + ': ' + match[1]));
+                    }
+                }
+
                 if (process.env.TICTAC_DEBUG) {
                     console.log('API response:');
                     console.log(JSON.stringify(data, null, 2));
