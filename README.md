@@ -1,7 +1,22 @@
-tictac-report-status
-====================
+Tic-Tac Time Report Status Emails
+=================================
 
-Just hacking... move on. Nothing to see here.
+Automatically send personalized time report status emails for [Tic-Tac Mobile](http://tictacmobile.com/) time-reporting system.
+
+I developed this with two main purposes.
+
+1. Remind people to have their time report updatedby end of week by emailing a personalized reminder containing what they have currently reported for the week.
+2. Keep people up-to-date with what everyone is doing and what projects they are involved with by emailing a week in review summary (also extra incentive to report in time, otherwise it will look like you haven't worked on anything).
+
+This is a Node.js app, made to be run as a scheduled worker on Heroku, that retrieves data about current projects and employees from the Tic-Tac API and then sends custom, personalized emails using SendGrid (free tier is enough, 400 emails/day).
+
+### Email screen capture
+
+These are just examples; content, style and conditional logic is controlled by a Handlebars template.
+
+| End of week reminder | Week in review |
+| ------------- | ------------- |
+| ![End of week reminder](http://stpe.github.io/tictac-report-status/tictac-status-report-friday.png) | ![Week in review](http://stpe.github.io/tictac-report-status/tictac-status-report-week-in-review.png) |
 
 ### Setup
 
