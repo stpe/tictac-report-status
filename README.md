@@ -63,7 +63,7 @@ Currently meant to be run as a [scheduled](https://devcenter.heroku.com/articles
 
 ### Customization
 
-Email template is located in `app/template` directory and uses [Handlebars](http://handlebarsjs.com/) as templating language.
+Email template is located in `app/template` directory and uses [Handlebars](http://handlebarsjs.com/) as templating language. CSS is automatically inlined when sent as an email, so no need to do that manually.
 
 ### Todo/Further development
 
